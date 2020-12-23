@@ -26,7 +26,7 @@ export default function ClockDisplay(props) {
       <Typography variant="h4" className={classes.title}>
         {props.title}
       </Typography>
-      <Typography variant="h3">
+      <Typography variant={props.variant ? props.variant : 'h3'}>
         {stringOfElapsed(props.elapsed)}
       </Typography>
     </Paper>

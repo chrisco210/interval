@@ -7,7 +7,7 @@ import { Divider, List, Typography } from '@material-ui/core';
 import TaskItem from '../setupscreen/programselector/TaskItem'
 
 const useStyles = makeStyles((theme) => ({
-  fullHeight: {
+  fillSurroundings: {
     height: '100%',
     maxHeight: '100%',
   },
@@ -30,7 +30,7 @@ export default function WorkoutSidebar(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.fullHeight}>
+    <div className={classes.fillSurroundings}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <ClockDisplay title="Elapsed Time" elapsed={60} />
@@ -45,7 +45,7 @@ export default function WorkoutSidebar(props) {
             </Typography>
             <List component="nav" className={classes.scroll}>
               {props.program.map((elt, index) => (
-                <div>
+                <div key={JSON.stringify(elt)}>
                   <TaskItem 
                   textClasses={classes.itemtext}
                   task={elt.task} 

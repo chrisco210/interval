@@ -19,14 +19,13 @@ const styles = (theme) => ({
   },
 });
 
-
 class WorkoutView extends React.Component {
   render() {
     const { classes } = this.props;
     const current = this.props.program[this.props.current];
     let next;
     if(this.props.current < this.props.program.length - 1) {
-      next = this.props.program[this.props.current + 1];
+      next = this.props.program[this.props.current + 1].task;
     } else {
       next = 'None';
     }
@@ -43,9 +42,9 @@ class WorkoutView extends React.Component {
           <Grid item xs={12} md={9}>
             <ActiveDisplay 
               currentTask={current.task}
-              nextTask={next.task}
+              nextTask={next}
               currentIntensity={current.intensity}
-              remaining={150}/>
+              remaining={this.props.remaining}/>
           </Grid>
         </Grid>
       </div>

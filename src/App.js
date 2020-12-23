@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from "react-router-dom";
 
 
@@ -26,10 +27,10 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      program: TEMP_MOCK,
+      program: [],
       elapsed: 0,
       current: 0,
-      running: true
+      running: false
     };
   }
 
@@ -62,8 +63,6 @@ class App extends React.Component {
         }
       } 
 
-      
-
       return retObj;
     });
   }
@@ -76,14 +75,18 @@ class App extends React.Component {
               <SetupView 
                 presets={workoutpresets} 
                 onNewProgram={p => this.onNewProgram(p)}
+                onStart={() => this.setState({running: true})}
                 program={this.state.program}/>
             </Route>
             <Route path={['/', '/active']}>
-              <WorkoutView 
+              {this.state.program.length !== 0 ? 
+                (<WorkoutView 
                 elapsed={this.state.elapsed}
                 program={this.state.program}
                 current={this.state.current}
-                total={computeTotalTime(this.state.program)}/>
+                remaining={getCurrentEndpoint(this.state) - this.state.elapsed}
+                total={computeTotalTime(this.state.program)}/>)
+              : <Redirect to="/setup"/>}
             </Route>
             <Route path="/pause">
               <p>Paused</p>
@@ -98,12 +101,11 @@ class App extends React.Component {
 }
 
 function getCurrentEndpoint(state) {
-    return state.program
-      .slice(0, state.current + 1)
-      .map((elt) => elt.duration)
-      .reduce(((acc, cur) => cur + acc), 0);
-
-  }
+  return state.program
+    .slice(0, state.current + 1)
+    .map((elt) => elt.duration)
+    .reduce(((acc, cur) => cur + acc), 0);
+}
 
 function computeTotalTime(program) {
   return program.reduce(((acc, cur) => acc + cur.duration), 0);

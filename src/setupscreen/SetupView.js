@@ -47,7 +47,7 @@ class SetupView extends React.Component {
           }}
           onNewTask={(t) => this.addNewTask(t)}
         />
-        <Button variant="contained" component={RouterLink} to="/">Start</Button>
+        <Button variant="contained" onClick={() => this.props.onStart()} component={RouterLink} to="/">Start</Button>
       </Container>
     )
   }

@@ -6,7 +6,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DragIndicatorRounded from '@material-ui/icons/DragIndicatorRounded';
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import TaskItem from './TaskItem';
 // Has properties for a individual program element
 
 
@@ -26,7 +27,11 @@ class DraggableTask extends React.Component {
                   <ListItemIcon>
                     <DragIndicatorRounded />
                   </ListItemIcon>
-                  <ListItemText primary={`Task: ${this.props.task} Duration: ${this.props.duration} minutes Intensity: ${this.props.intensity}%`} />
+                  <TaskItem 
+                    task={this.props.task} 
+                    duration={this.props.duration} 
+                    intensity={this.props.intensity}
+                    />
                   <ListItemSecondaryAction>
                     <IconButton edge="end" aria-label="delete" onClick={() => this.props.onDelete()}>
                       <DeleteIcon />

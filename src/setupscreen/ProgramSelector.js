@@ -6,7 +6,14 @@ import ReorderableProgram from './ReorderableProgram'
 class ProgramSelector extends React.Component {
   render() {
     return (
-      <ReorderableProgram />
+      <div>
+        <ReorderableProgram 
+          program={this.props.program}
+          onDragEnd={(r) => this.props.onDragEnd(r)}
+          onDelete={(i) => {this.props.onDelete(i)}}
+        />    
+      </div>
+      
     )
   }
 }

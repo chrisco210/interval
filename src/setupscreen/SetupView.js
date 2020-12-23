@@ -46,8 +46,12 @@ class SetupView extends React.Component {
         <hr></hr>
         <ProgramSelector
           program={this.state.program} 
+          presets={this.props.presets}
           onDragEnd={(r) => this.onDragEnd(r)}
           onDelete={(i) => this.onDelete(i)}
+          onPresetSelect={(i) => {
+            this.setState({program: this.props.presets[i].tasks})
+          }}
         />
       </Container>
     )

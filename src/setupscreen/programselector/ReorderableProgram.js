@@ -2,7 +2,6 @@ import React from 'react'
 import DraggableTask from './DraggableTask'
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import List from '@material-ui/core/List';
-import AddTaskButton from "../addtask/AddTaskButton"
 
 
 // Has properties program and onDragEnd

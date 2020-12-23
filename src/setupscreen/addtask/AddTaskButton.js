@@ -1,19 +1,23 @@
-import React from 'react'
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import AddIcon from '@material-ui/icons/Add'
-import { ListItemText } from '@material-ui/core';
+import React from 'react';
+import AddTaskForm from './AddTaskForm';
+import AddTaskUnselected from './AddTaskUnselected';
 
 class AddTaskButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userChoseAddTask: false
+    }
+  }
+
   render() {
-    return (
-      <ListItem button>
-        <ListItemIcon>
-          <AddIcon />
-        </ListItemIcon>
-        <ListItemText primary="Add new task"></ListItemText>
-      </ListItem>
-    );
+    if(this.state.userChoseAddTask) {
+      return <AddTaskForm />
+    } else {
+      return <AddTaskUnselected onClick={() => {
+        this.setState({userChoseAddTask: true})
+      }}/>
+    }
   }
 }
 

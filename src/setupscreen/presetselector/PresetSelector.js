@@ -23,9 +23,10 @@ class PresetSelector extends React.Component {
           labelPlacement="start"
           control={
           <Select native 
-            onClick={(e) => this.props.selectPreset(e.target.value)}
+            onChange={(e) => this.props.selectPreset(e.target.value)}
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper">
+              <option aria-label="None" value="" />
             {this.props.presets.map((elt, idx) => (
               <PresetItem key={elt.name} index={idx} name={elt.name} ref={this.wrapper}/>
             )

@@ -58,6 +58,12 @@ class App extends React.Component {
     }))
   }
 
+  handleStart() {
+    if(this.state.program.length !== 0) {
+      this.setState({running: true})
+    }
+  }
+
   handleRestart() {
     this.setState({running: true, current: 0, elapsed: 0});
   }
@@ -103,7 +109,7 @@ class App extends React.Component {
               <SetupView 
                 presets={workoutpresets} 
                 onNewProgram={p => this.handleNewProgram(p)}
-                onStart={() => this.setState({running: true})}
+                onStart={() => this.handleStart()}
                 program={this.state.program}/>
             </Route>
             <Route path="/pause">

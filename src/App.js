@@ -11,18 +11,6 @@ import {
   Redirect
 } from "react-router-dom";
 
-
-const TEMP_MOCK = [
-  {task: "task 1", duration: 5, intensity: 1},
-  {task: "task 2", duration: 5, intensity: 1},
-  {task: "task 3", duration: 5, intensity: 1},
-  {task: "task 4", duration: 5, intensity: 1},
-  {task: "task 5", duration: 5, intensity: 1},
-  {task: "task 6", duration: 5, intensity: 1},
-  {task: "task 7", duration: 5, intensity: 1},
-  
-]
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +39,11 @@ class App extends React.Component {
   }
 
   handlePause() {
-    this.setState({running: false})
+    this.setState({running: false});
+  }
+
+  handleResume() {
+    this.setState({running: true});
   }
 
   tick() {
@@ -99,13 +91,16 @@ class App extends React.Component {
                 onStart={() => this.setState({running: true})}
                 program={this.state.program}/>
             </Route>
-            <Route path={['/', '/active']} children={workoutPage} />
             <Route path="/pause">
-              <PauseView />
+              <PauseView 
+                currentTask={this.state.program[this.state.current]}
+                elapsed={this.state.elapsed}
+                onResume={() => this.handleResume()}/>
             </Route>
             <Route path="/done">
               <p>Finished</p>
             </Route>
+            <Route path={['/', '/active']} children={workoutPage} />
           </Switch>
         </Router>
       );

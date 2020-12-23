@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core'
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import ClockTypography from './ClockTypography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,19 +27,7 @@ export default function ClockDisplay(props) {
       <Typography variant="h4" className={classes.title}>
         {props.title}
       </Typography>
-      <Typography variant={props.variant ? props.variant : 'h3'}>
-        {stringOfElapsed(props.elapsed)}
-      </Typography>
+      <ClockTypography {...props} />
     </Paper>
   )
-}
-
-function stringOfElapsed(elapsed) {
-  const seconds = elapsed % 60;
-  const minutes = (Math.floor(elapsed / 60)) % 60;
-  const hours = (Math.floor(elapsed / (60 * 60))) % 60;
-
-  return (hours < 10 ? '0' : '') + hours 
-    + ':' + (minutes < 10 ? '0' : '') + minutes + ':' 
-    + (seconds < 10 ? '0' : '') + seconds;
 }

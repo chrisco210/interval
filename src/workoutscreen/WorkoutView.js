@@ -33,13 +33,13 @@ class WorkoutView extends React.Component {
     return (
       <div className={classes.fullHeight}>
         <Grid container spacing={3} className={classes.fillSurroundings}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} lg={3}>
             <WorkoutSidebar 
               program={this.props.program}
               remaining={this.props.total - this.props.elapsed}
               elapsed={this.props.elapsed}/>
           </Grid>
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} lg={9}>
             <ActiveDisplay 
               currentTask={current.task}
               nextTask={next}

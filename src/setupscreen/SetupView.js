@@ -2,20 +2,14 @@ import React from 'react'
 import ProgramSelector from './ProgramSelector'
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
+import { Link as RouterLink } from 'react-router-dom';
 
 import Typography from '@material-ui/core/Typography'
 
 class SetupView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      program: this.props.presets[0].tasks
-    };
-  }
-
   onDelete(index) {
-    const newProgram = removeFromArray(this.state.program, index);
-    this.setState({program: newProgram})
+    const newProgram = removeFromArray(this.props.program, index);
+    this.props.onNewProgram(newProgram);
   }
 
   onDragEnd(result) {
@@ -24,17 +18,17 @@ class SetupView extends React.Component {
     }
 
     const items = reorder(
-      this.state.program, 
+      this.props.program, 
       result.source.index,
       result.destination.index
     );
 
-    this.setState({program: items})
+    this.props.onNewProgram(items);
   }
 
   addNewTask(task) {
-    const newArr = this.state.program.slice().concat(task);
-    this.setState({program: newArr});
+    const newArr = this.props.program.slice().concat(task);
+    this.props.onNewProgram(newArr)
   }
 
   render() {
@@ -44,16 +38,16 @@ class SetupView extends React.Component {
           Setup Workout
         </Typography>
         <ProgramSelector
-          program={this.state.program} 
+          program={this.props.program} 
           presets={this.props.presets}
           onDragEnd={(r) => this.onDragEnd(r)}
           onDelete={(i) => this.onDelete(i)}
           onPresetSelect={(i) => {
-            this.setState({program: this.props.presets[i].tasks})
+            this.props.onNewProgram(this.props.presets[i].tasks)
           }}
           onNewTask={(t) => this.addNewTask(t)}
         />
-        <Button variant="contained">Start</Button>
+        <Button variant="contained" component={RouterLink} to="/">Start</Button>
       </Container>
     )
   }

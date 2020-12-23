@@ -4,17 +4,6 @@ import WorkoutSidebar from './WorkoutSidebar'
 import ActiveDisplay from './ActiveDisplay'
 import { withStyles } from "@material-ui/core/styles";
 
-const TEMP_MOCK = [
-  {task: "task 1", duration: 1, intensity: 1},
-  {task: "task 2", duration: 1, intensity: 1},
-  {task: "task 3", duration: 1, intensity: 1},
-  {task: "task 4", duration: 1, intensity: 1},
-  {task: "task 5", duration: 1, intensity: 1},
-  {task: "task 6", duration: 1, intensity: 1},
-  {task: "task 7", duration: 1, intensity: 1},
-  
-]
-
 const styles = (theme) => ({
   fullHeight: {
     minHeight: '100vh',
@@ -34,18 +23,28 @@ const styles = (theme) => ({
 class WorkoutView extends React.Component {
   render() {
     const { classes } = this.props;
-
+    const current = this.props.program[this.props.current];
+    let next;
+    if(this.props.current < this.props.program.length - 1) {
+      next = this.props.program[this.props.current + 1];
+    } else {
+      next = 'None';
+    }
+    
     return (
       <div className={classes.fullHeight}>
         <Grid container spacing={3} className={classes.fillSurroundings}>
           <Grid item xs={12} md={3}>
-            <WorkoutSidebar program={TEMP_MOCK}/>
+            <WorkoutSidebar 
+              program={this.props.program}
+              remaining={this.props.total - this.props.elapsed}
+              elapsed={this.props.elapsed}/>
           </Grid>
           <Grid item xs={12} md={9}>
             <ActiveDisplay 
-              currentTask="TASK"
-              nextTask="NEXT TASK"
-              currentIntensity="50"
+              currentTask={current.task}
+              nextTask={next.task}
+              currentIntensity={current.intensity}
               remaining={150}/>
           </Grid>
         </Grid>
@@ -53,5 +52,4 @@ class WorkoutView extends React.Component {
     )
   }
 }
-
 export default withStyles(styles, {withTheme: true})(WorkoutView)

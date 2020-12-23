@@ -33,10 +33,10 @@ export default function WorkoutSidebar(props) {
     <div className={classes.fillSurroundings}>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <ClockDisplay title="Elapsed Time" elapsed={60} />
+          <ClockDisplay title="Elapsed Time" elapsed={props.elapsed} />
         </Grid>
         <Grid item xs={12}>
-          <ClockDisplay title="Remaining Time" elapsed={7853} />
+          <ClockDisplay title="Remaining Time" elapsed={props.remaining} />
         </Grid>
         <Grid item xs={12}>
           <Paper>

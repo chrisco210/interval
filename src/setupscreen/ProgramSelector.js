@@ -18,7 +18,7 @@ class ProgramSelector extends React.Component {
           onDragEnd={(r) => this.props.onDragEnd(r)}
           onDelete={(i) => {this.props.onDelete(i)}}/>    
         <List>
-          <AddTaskButton />
+          <AddTaskButton onSubmit={(v) => this.props.onNewTask(v)}/>
         </List>
       </div>
       

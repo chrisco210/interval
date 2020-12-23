@@ -2,6 +2,7 @@ import React from 'react'
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import PresetItem from './PresetItem'
+import { FormControlLabel } from '@material-ui/core';
 
 class PresetSelector extends React.Component {
 
@@ -16,16 +17,22 @@ class PresetSelector extends React.Component {
 
   render() {
     return (
-      <FormControl>
-        <Select native 
-          onClick={(e) => this.props.selectPreset(e.target.value)}
-          labelId="demo-simple-select-helper-label"
-          id="demo-simple-select-helper">
-          {this.props.presets.map((elt, idx) => (
+      <FormControl component="fieldset">
+        <FormControlLabel 
+          label="Start from a preset:  " 
+          labelPlacement="start"
+          control={
+          <Select native 
+            onClick={(e) => this.props.selectPreset(e.target.value)}
+            labelId="demo-simple-select-helper-label"
+            id="demo-simple-select-helper">
+            {this.props.presets.map((elt, idx) => (
               <PresetItem key={elt.name} index={idx} name={elt.name} ref={this.wrapper}/>
             )
-          )}
-        </Select>
+            )}
+          </Select>
+          }
+        />
       </FormControl>
     )
   }

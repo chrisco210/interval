@@ -1,6 +1,8 @@
 import React from 'react'
 import ReorderableProgram from './ReorderableProgram'
-import PresetSelector from './PresetSelector'
+import PresetSelector from '../presetselector/PresetSelector'
+import AddTaskButton from "../addtask/AddTaskButton"
+import List from '@material-ui/core/List';
 
 // Has property {program : task list}
 
@@ -16,6 +18,9 @@ class ProgramSelector extends React.Component {
           onDragEnd={(r) => this.props.onDragEnd(r)}
           onDelete={(i) => {this.props.onDelete(i)}}
         />    
+        <List>
+          <AddTaskButton />
+        </List>
       </div>
       
     )

@@ -1,5 +1,4 @@
 import React from 'react'
-import MenuItem from '@material-ui/core/MenuItem';
 
 class PresetItem extends React.Component {
   render() {

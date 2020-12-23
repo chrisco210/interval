@@ -1,6 +1,7 @@
 import React from 'react'
 import ProgramSelector from './ProgramSelector'
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 
 import Typography from '@material-ui/core/Typography'
 
@@ -38,12 +39,8 @@ class SetupView extends React.Component {
 
       <Container maxWidth="md">
         <Typography variant="h1" component="h2">
-          Setup Exercise
+          Setup Workout
         </Typography>
-        <p>
-          {JSON.stringify(this.state.program)}
-        </p>
-        <hr></hr>
         <ProgramSelector
           program={this.state.program} 
           presets={this.props.presets}
@@ -53,6 +50,7 @@ class SetupView extends React.Component {
             this.setState({program: this.props.presets[i].tasks})
           }}
         />
+        <Button variant="contained">Start</Button>
       </Container>
     )
   }

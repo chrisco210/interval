@@ -48,11 +48,24 @@ const workoutpresets = [
     ]
   },
   {
-    name: 'Test workout 2',
+    name: 'Descending Interval Set',
     tasks: [
-      {key: 44, task: 'Task2 1', intensity: 50, duration: 15},
-      {key: 45, task: 'Task2 2', intensity: 33, duration: 10},
-      {key: 46, task: 'Task2 3', intensity: 55, duration: 20}
+      {key: 44, task: 'Warm up', intensity: 25, duration: (10 * 60)},
+      {key: 45, task: 'All-out fast', intensity: 95, duration: 45},
+      {key: 46, task: 'Easy', intensity: 15, duration: 255},
+      {key: 47, task: 'All-out fast', intensity: 95, duration: 40},
+      {key: 48, task: 'Easy', intensity: 15, duration: 260},
+      {key: 49, task: 'All-out fast', intensity: 95, duration: 35},
+      {key: 50, task: 'Easy', intensity: 15, duration: 265},
+      {key: 51, task: 'All-out fast', intensity: 95, duration: 30},
+      {key: 52, task: 'Easy', intensity: 15, duration: 270},
+      {key: 53, task: 'All-out fast', intensity: 95, duration: 25},
+      {key: 54, task: 'Easy', intensity: 15, duration: 275},
+      {key: 55, task: 'All-out fast', intensity: 95, duration: 20},
+      {key: 56, task: 'Easy', intensity: 15, duration: 280},
+      {key: 57, task: 'All-out fast', intensity: 95, duration: 15},
+      {key: 58, task: 'Easy', intensity: 15, duration: 285},
+      {key: 59, task: 'Cool down', intensity: 10, duration: 5 * 60}
     ]
   }
 ]

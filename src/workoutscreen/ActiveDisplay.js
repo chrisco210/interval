@@ -42,7 +42,7 @@ export default function ActiveDisplay(props) {
         </Grid>
         <Grid item container direction="row" justify="flex-end" spacing={3}>
           <Grid item>
-            <Button size="large" variant="contained" color="primary">Pause</Button>
+            <Button size="large" variant="contained" color="primary" onClick={() => props.onPause()}>Pause</Button>
           </Grid>
           <Grid item>
             <Button size="large" variant="contained" color="secondary">End</Button>

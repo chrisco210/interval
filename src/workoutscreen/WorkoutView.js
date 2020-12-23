@@ -27,7 +27,7 @@ class WorkoutView extends React.Component {
     if(this.props.current < this.props.program.length - 1) {
       next = this.props.program[this.props.current + 1].task;
     } else {
-      next = 'None';
+      next = 'Done!';
     }
     
     return (
@@ -44,6 +44,7 @@ class WorkoutView extends React.Component {
               currentTask={current.task}
               nextTask={next}
               currentIntensity={current.intensity}
+              onPause={() => this.props.onPause()}
               remaining={this.props.remaining}/>
           </Grid>
         </Grid>

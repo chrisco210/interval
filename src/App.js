@@ -1,6 +1,7 @@
 import React from 'react'
 import SetupView from './setupscreen/SetupView'
 import WorkoutView from './workoutscreen/WorkoutView'
+import PauseView from './pausescreen/PauseView'
 
 import workoutpresets from './setupscreen/workoutpresets'
 import {
@@ -45,8 +46,12 @@ class App extends React.Component {
     clearInterval(this.timerID);
   }
 
-  onNewProgram(newProgram) {
+  handleNewProgram(newProgram) {
     this.setState({program: newProgram});
+  }
+
+  handlePause() {
+    this.setState({running: false})
   }
 
   tick() {
@@ -68,28 +73,35 @@ class App extends React.Component {
   }
 
   render() {
+    let workoutPage;
+
+    if(this.state.program.length === 0) {
+      workoutPage = <Redirect to="/setup"/>;
+    } else if(!this.state.running) {
+      workoutPage = <Redirect to="/pause" />;
+    } else {
+      workoutPage = (<WorkoutView 
+                elapsed={this.state.elapsed}
+                program={this.state.program}
+                current={this.state.current}
+                remaining={getCurrentEndpoint(this.state) - this.state.elapsed}
+                total={computeTotalTime(this.state.program)}
+                onPause={() => this.handlePause()}/>)
+    }
+
     return (
         <Router>
           <Switch>
             <Route path="/setup">
               <SetupView 
                 presets={workoutpresets} 
-                onNewProgram={p => this.onNewProgram(p)}
+                onNewProgram={p => this.handleNewProgram(p)}
                 onStart={() => this.setState({running: true})}
                 program={this.state.program}/>
             </Route>
-            <Route path={['/', '/active']}>
-              {this.state.program.length !== 0 ? 
-                (<WorkoutView 
-                elapsed={this.state.elapsed}
-                program={this.state.program}
-                current={this.state.current}
-                remaining={getCurrentEndpoint(this.state) - this.state.elapsed}
-                total={computeTotalTime(this.state.program)}/>)
-              : <Redirect to="/setup"/>}
-            </Route>
+            <Route path={['/', '/active']} children={workoutPage} />
             <Route path="/pause">
-              <p>Paused</p>
+              <PauseView />
             </Route>
             <Route path="/done">
               <p>Finished</p>

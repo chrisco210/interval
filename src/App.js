@@ -71,12 +71,10 @@ class App extends React.Component {
   tick() {
     this.setState((state, props) => {
       const retObj = {}
-      console.log('tick elapsed ' + state.elapsed)
       if(state.running && state.elapsed < computeTotalTime(this.state.program)) {
         retObj.elapsed = state.elapsed + 1;
 
         const currentEndpoint = getCurrentEndpoint(state);
-        console.log(`Current endpoint at tick ${state.elapsed}: ${currentEndpoint}`)
         if(state.elapsed >= currentEndpoint) {
           retObj.current = state.current + 1;
         }
@@ -91,6 +89,8 @@ class App extends React.Component {
 
     if(this.state.program.length === 0) {
       workoutPage = <Redirect to="/setup"/>;
+    } else if (this.state.elapsed >= computeTotalTime(this.state.program)) {
+      workoutPage = <Redirect to="/done" />;
     } else {
       workoutPage = (<WorkoutView 
                 elapsed={this.state.elapsed}

@@ -34,7 +34,7 @@ export default function FinishView(props) {
       <Grid item >
         <Typography variant="h1" className={styles.itemtext}>Finished</Typography>
       </Grid>
-      <Grid item>
+      <Grid item style={{overflowY: 'scroll', maxHeight: '33%'}}>
         <TaskList program={props.program} />
       </Grid>
       <Grid item>

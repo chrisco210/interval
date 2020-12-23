@@ -21,7 +21,8 @@ class App extends React.Component {
       lastElapsed: 0,
       elapsed: 0,
       current: 0,
-      running: false
+      running: false,
+      done: false,
     };
   }
 
@@ -54,31 +55,37 @@ class App extends React.Component {
       elapsed: 0,
       current: 0,
       running: false,
+      done: true,
       lastElapsed: state.elapsed
     }))
   }
 
   handleStart() {
     if(this.state.program.length !== 0) {
-      this.setState({running: true})
+      this.setState({running: true, done: false})
     }
   }
 
   handleRestart() {
-    this.setState({running: true, current: 0, elapsed: 0});
+    this.setState({running: true, done: false, current: 0, elapsed: 0});
   }
 
   tick() {
     this.setState((state, props) => {
       const retObj = {}
-      if(state.running && state.elapsed < computeTotalTime(this.state.program)) {
-        retObj.elapsed = state.elapsed + 1;
+      if(state.elapsed < computeTotalTime(this.state.program)) {
+        if(state.running) {
+          retObj.elapsed = state.elapsed + 1;
+        }
 
         const currentEndpoint = getCurrentEndpoint(state);
         if(state.elapsed >= currentEndpoint) {
           retObj.current = state.current + 1;
         }
-      } 
+      } else {
+        retObj.lastElapsed = state.elapsed;
+        retObj.done = true;
+      }
 
       return retObj;
     });
@@ -89,7 +96,7 @@ class App extends React.Component {
 
     if(this.state.program.length === 0) {
       workoutPage = <Redirect to="/setup"/>;
-    } else if (this.state.elapsed >= computeTotalTime(this.state.program)) {
+    } else if (this.state.done) {
       workoutPage = <Redirect to="/done" />;
     } else {
       workoutPage = (<WorkoutView 

@@ -1,15 +1,14 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import ClockDisplay from './ClockDisplay'
-import {  Typography } from '@material-ui/core';
+import {  Box, Typography } from '@material-ui/core';
 import TaskList from './TaskList';
 
 const useStyles = makeStyles((theme) => ({
   fillSurroundings: {
-    height: '100%',
-    maxHeight: '100%',
+    height: '100vh',
+    maxHeight: '100vh',
   },
   itemtext: {
     textAlign: 'center'
@@ -19,8 +18,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary
   },
   scroll: {
-    position: 'relative',
-    overflow: 'auto',
+    overflowY: 'scroll',
   }
 }))
 
@@ -31,7 +29,11 @@ export default function WorkoutSidebar(props) {
 
   return (
     <div className={classes.fillSurroundings}>
-      <Grid container spacing={2}>
+      <Grid 
+        container 
+        spacing={2}
+        justify="flex-start"
+        alignItems="stretch">
         <Grid item xs={12}>
           <ClockDisplay title="Elapsed Time" elapsed={props.elapsed} />
         </Grid>
@@ -39,12 +41,12 @@ export default function WorkoutSidebar(props) {
           <ClockDisplay title="Remaining Time" elapsed={props.remaining} />
         </Grid>
         <Grid item xs={12}>
-          <Paper>
-            <Typography variant="h3" className={classes.itemtext}>
-            Program
-            </Typography>
-            <TaskList program={props.program} />
-          </Paper>
+          <Typography variant="h3" className={classes.itemtext}>
+          Program
+          </Typography>
+          <div className={classes.scroll}>
+            <TaskList program={props.program}/>
+          </div>
         </Grid>
       </Grid>
       

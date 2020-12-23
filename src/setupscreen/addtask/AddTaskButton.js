@@ -53,8 +53,9 @@ class AddTaskButton extends React.Component {
 
   handleSubmit() {
     let subObj = Object.assign({}, this.state.value)
-    subObj.duration = parseInt(subObj.duration);
-    subObj.intensity = parseInt(subObj.intensity);
+    subObj.duration = Math.floor(parseInt(subObj.duration));
+    subObj.intensity = Math.floor(parseInt(subObj.intensity));
+    subObj.key = Math.random() * 1000000;
 
     this.setState({
       value: {

@@ -25,7 +25,7 @@ class AddTaskForm extends React.Component {
             error={!this.props.fieldsValid.duration}
             required id="duration" 
             variant="filled"
-            label="Task Duration (Minutes)"
+            label="Task Duration (Seconds)"
             onChange={(e) => this.props.onUpdate('duration', e.target.value)}/>
           <TextField 
             error={!this.props.fieldsValid.intensity}

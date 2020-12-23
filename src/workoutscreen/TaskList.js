@@ -18,7 +18,7 @@ export default function TaskList(props) {
   return (
   <List component="nav" className={classes.scroll}>
     {props.program.map((elt, index) => (
-      <div key={JSON.stringify(elt)}>
+      <div key={elt.key}>
         <TaskItem
           textClasses={classes.itemtext}
           task={elt.task} 

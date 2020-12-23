@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   handleNewProgram(newProgram) {
+    console.log(`Updating new program: ${JSON.stringify(newProgram)}`)
     this.setState({program: newProgram});
   }
 

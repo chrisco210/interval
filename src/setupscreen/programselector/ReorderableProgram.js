@@ -17,7 +17,7 @@ class ReorderableProgram extends React.Component {
               <div {...provided.droppableProps} ref={provided.innerRef}>
                   {this.props.program.map((elt, index) => (
                     <DraggableTask 
-                      key={elt.task}
+                      key={elt.key ? elt.key : (elt.task + elt.intensity + elt.duration)}
                       task={elt.task}
                       intensity={elt.intensity}
                       duration={elt.duration}

@@ -3,13 +3,28 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import ClockDisplay from './ClockDisplay'
+import { Divider, List, Typography } from '@material-ui/core';
+import TaskItem from '../setupscreen/programselector/TaskItem'
 
 const useStyles = makeStyles((theme) => ({
   fullHeight: {
     height: '100%',
-    maxHeight: '100%'
+    maxHeight: '100%',
+  },
+  itemtext: {
+    textAlign: 'center'
+  },
+  secondaryBg: {
+    backgroundColor: theme.palette.secondary,
+    color: theme.palette.secondary
+  },
+  scroll: {
+    position: 'relative',
+    overflow: 'auto',
   }
 }))
+
+
 
 export default function WorkoutSidebar(props) {
   const classes = useStyles();
@@ -23,10 +38,25 @@ export default function WorkoutSidebar(props) {
         <Grid item xs={12}>
           <ClockDisplay title="Remaining Time" elapsed={7853} />
         </Grid>
-        
-        <Paper>
-          <p>Test three</p>
-        </Paper>
+        <Grid item xs={12}>
+          <Paper>
+            <Typography variant="h3" className={classes.itemtext}>
+            Program
+            </Typography>
+            <List component="nav" className={classes.scroll}>
+              {props.program.map((elt, index) => (
+                <div>
+                  <TaskItem 
+                  textClasses={classes.itemtext}
+                  task={elt.task} 
+                  duration={elt.duration} 
+                  intensity={elt.intensity}/>
+                  <Divider />
+                </div>
+              ))}
+            </List>
+          </Paper>
+        </Grid>
       </Grid>
       
     </div>

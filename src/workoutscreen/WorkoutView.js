@@ -45,6 +45,7 @@ class WorkoutView extends React.Component {
               nextTask={next}
               currentIntensity={current.intensity}
               onPause={() => this.props.onPause()}
+              onEnd={() => this.props.onEnd()}
               remaining={this.props.remaining}/>
           </Grid>
         </Grid>

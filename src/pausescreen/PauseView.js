@@ -76,6 +76,8 @@ export default function PauseView(props) {
         </Grid>
         <Grid item>
           <Button 
+            component={RouterLink} to="/done"
+            onClick={() => props.onEnd()}
             variant="contained" 
             size="large"
             color="secondary">End</Button>

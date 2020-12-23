@@ -10,6 +10,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import FinishView from './finishscreen/FinishView'
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
 
     this.state = {
       program: [],
+      lastElapsed: 0,
       elapsed: 0,
       current: 0,
       running: false
@@ -46,6 +48,19 @@ class App extends React.Component {
     this.setState({running: true});
   }
 
+  handleEnd() {
+    this.setState((state, props) => ({
+      elapsed: 0,
+      current: 0,
+      running: false,
+      lastElapsed: state.elapsed
+    }))
+  }
+
+  handleRestart() {
+    this.setState({running: true, current: 0, elapsed: 0});
+  }
+
   tick() {
     this.setState((state, props) => {
       const retObj = {}
@@ -69,8 +84,6 @@ class App extends React.Component {
 
     if(this.state.program.length === 0) {
       workoutPage = <Redirect to="/setup"/>;
-    } else if(!this.state.running) {
-      workoutPage = <Redirect to="/pause" />;
     } else {
       workoutPage = (<WorkoutView 
                 elapsed={this.state.elapsed}
@@ -78,7 +91,8 @@ class App extends React.Component {
                 current={this.state.current}
                 remaining={getCurrentEndpoint(this.state) - this.state.elapsed}
                 total={computeTotalTime(this.state.program)}
-                onPause={() => this.handlePause()}/>)
+                onPause={() => this.handlePause()}
+                onEnd={() => this.handleEnd()}/>)
     }
 
     return (
@@ -95,10 +109,15 @@ class App extends React.Component {
               <PauseView 
                 currentTask={this.state.program[this.state.current]}
                 elapsed={this.state.elapsed}
-                onResume={() => this.handleResume()}/>
+                onResume={() => this.handleResume()}
+                onEnd={() => this.handleEnd()}/>
             </Route>
             <Route path="/done">
-              <p>Finished</p>
+              <FinishView 
+                program={this.state.program} 
+                elapsed={this.state.lastElapsed}
+                onEnd={() => this.handleEnd()}
+                onRestart={() => this.handleRestart()}/>
             </Route>
             <Route path={['/', '/active']} children={workoutPage} />
           </Switch>

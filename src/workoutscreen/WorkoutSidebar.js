@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import ClockDisplay from './ClockDisplay'
-import { Divider, List, Typography } from '@material-ui/core';
-import TaskItem from '../setupscreen/programselector/TaskItem'
+import {  Typography } from '@material-ui/core';
+import TaskList from './TaskList';
 
 const useStyles = makeStyles((theme) => ({
   fillSurroundings: {
@@ -43,18 +43,7 @@ export default function WorkoutSidebar(props) {
             <Typography variant="h3" className={classes.itemtext}>
             Program
             </Typography>
-            <List component="nav" className={classes.scroll}>
-              {props.program.map((elt, index) => (
-                <div key={JSON.stringify(elt)}>
-                  <TaskItem 
-                  textClasses={classes.itemtext}
-                  task={elt.task} 
-                  duration={elt.duration} 
-                  intensity={elt.intensity}/>
-                  <Divider />
-                </div>
-              ))}
-            </List>
+            <TaskList program={props.program} />
           </Paper>
         </Grid>
       </Grid>

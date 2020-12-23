@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import ClockTypography from './ClockTypography';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   fillSurroundings: {
@@ -40,10 +41,22 @@ export default function ActiveDisplay(props) {
         </Grid>
         <Grid item container direction="row" justify="flex-end" spacing={3}>
           <Grid item>
-            <Button size="large" variant="contained" color="primary" onClick={() => props.onPause()}>Pause</Button>
+            <Button 
+              size="large" 
+              component={RouterLink} to="/pause"
+              variant="contained" 
+              color="primary" 
+              onClick={() => props.onPause()}>
+              Pause
+            </Button>
           </Grid>
           <Grid item>
-            <Button size="large" variant="contained" color="secondary">End</Button>
+            <Button 
+              size="large" 
+              component={RouterLink} to="/done"
+              variant="contained" 
+              color="secondary"
+              onClick={() => props.onEnd()}>End</Button>
           </Grid>
         </Grid>
       </Grid>

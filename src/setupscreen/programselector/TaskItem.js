@@ -17,7 +17,7 @@ export default function TaskItem(props) {
         primary={
         <span>
           Task: {props.task} Duration: {stringOfSeconds(props.duration)}{' '} 
-           Intensity: {props.intensity}%
+          {props.intensity ? `Intensity: ${props.intensity}%` : ''}
         </span>
       }/>
   );

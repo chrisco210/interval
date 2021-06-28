@@ -35,7 +35,7 @@ export default function ActiveDisplay(props) {
             {props.currentTask}
           </Typography>
           <Typography variant="h3" className={classes.graytext}>
-            {props.currentIntensity}%
+            {props.currentIntensity ? props.currentIntensity + '%' : ''}
           </Typography>
           <ClockTypography elapsed={props.remaining} variant="h1"/>
         </Grid>

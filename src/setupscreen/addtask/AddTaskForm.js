@@ -8,8 +8,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 
 class AddTaskForm extends React.Component {
   render() {
-    const fieldsInvalid = !this.props.fieldsValid.intensity 
-              || !this.props.fieldsValid.duration
+    const fieldsInvalid = !this.props.fieldsValid.duration
               || !this.props.fieldsValid.task;
 
     return (
@@ -28,7 +27,6 @@ class AddTaskForm extends React.Component {
             label="Task Duration (Seconds)"
             onChange={(e) => this.props.onUpdate('duration', e.target.value)}/>
           <TextField 
-            error={!this.props.fieldsValid.intensity}
             required id="intensity" 
             variant="filled" 
             label="Intensity" 

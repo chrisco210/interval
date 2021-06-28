@@ -48,6 +48,25 @@ const workoutpresets = [
     ]
   },
   {
+    name: 'T-Max Intervals',
+    tasks: [
+      {key: 1, task: 'Warm up', intensity: 25, duration: (5 * 60)},
+      {key: 2, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 3, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 4, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 5, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 6, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 7, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 8, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 9, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 10, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 11, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 12, task: 'Maximum Effort', intensity: 85, duration: (2.5 * 60)},
+      {key: 13, task: 'Rest', intensity: 25, duration: 5 * 60},
+      {key: 43, task: 'Cool Down', intensity: 10, duration: (5 * 60)}
+    ]
+  },
+  {
     name: 'Descending Interval Set',
     tasks: [
       {key: 44, task: 'Warm up', intensity: 25, duration: (10 * 60)},
@@ -66,6 +85,28 @@ const workoutpresets = [
       {key: 57, task: 'All-out fast', intensity: 95, duration: 15},
       {key: 58, task: 'Easy', intensity: 15, duration: 285},
       {key: 59, task: 'Cool down', intensity: 10, duration: 5 * 60}
+    ]
+  },
+  {
+    name: '10 Minute Arm Toner',
+    tasks: [
+      {key: 60, task: 'Rest', intensity: 0, duration: 15},
+      {key: 61, task: 'Front Raise', intensity: 100, duration: 60},
+      {key: 62, task: 'Rest', intensity: 0, duration: 15},
+      {key: 63, task: 'Side Raise', intensity: 100, duration: 60},
+      {key: 64, task: 'Rest', intensity: 0, duration: 15},
+      {key: 65, task: 'Elevated Bicep Curl', intensity: 100, duration: 60},
+      {key: 66, task: 'Rest', intensity: 0, duration: 15},
+      {key: 67, task: 'Tricep Kickbacks', intensity: 100, duration: 60},
+      {key: 68, task: 'Rest', intensity: 0, duration: 15},
+      {key: 69, task: 'Overhead Triceps', intensity: 100, duration: 60},
+      {key: 70, task: 'Rest', intensity: 0, duration: 15},
+      {key: 71, task: 'Upright Row', intensity: 100, duration: 60},
+      {key: 72, task: 'Rest', intensity: 0, duration: 15},
+      {key: 73, task: 'Bicep curl to sholder press', intensity: 100, duration: 60},
+      {key: 74, task: 'Rest', intensity: 0, duration: 15},
+      {key: 75, task: 'Shoulder press pulses slow', intensity: 50, duration: 30},
+      {key: 75, task: 'Shoulder press pulses fast', intensity: 100, duration: 30},
     ]
   }
 ]
